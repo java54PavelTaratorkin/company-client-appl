@@ -29,26 +29,32 @@ public class CompanyProxy implements Company {
 
 	@Override
 	public Employee getEmployee(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getRemoveEmployee("getEmployee",id);
+	}
+
+	private Employee getRemoveEmployee(String requestType, long id) {
+		String emplJSON = tcpClient.sendAndReceive
+				(new Request("getEmployee", "" + id));
+		return (Employee) new Employee().setObject(emplJSON);
 	}
 
 	@Override
 	public Employee removeEmployee(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getRemoveEmployee("removeEmployee", id);
 	}
 
 	@Override
 	public int getDepartmentBudget(String department) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return Integer.parseInt(tcpClient
+				.sendAndReceive(new Request("getDepartmentBudget", department)));
 	}
 
 	@Override
 	public String[] getDepartments() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return tcpClient.sendAndReceive(new Request("getDepartments", ""))
+				.split(";");
 	}
 
 	@Override
