@@ -7,7 +7,7 @@ import telran.view.*;
 import java.util.*;
 public class CompanyClientAppl {
 
-	private static final int PORT = 5000;
+	private static final int PORT = 4000;
 
 	public static void main(String[] args) {
 		TcpClient tcpClient = new TcpClient("localhost", PORT);
